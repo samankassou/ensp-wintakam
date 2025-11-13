@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wintakam.LoginPage"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*,Auto"
+              Padding="30,60,30,30">
+
+            <!-- En-tête avec titre et description -->
+            <VerticalStackLayout Grid.Row="0" Spacing="20">
+
+                <!-- Titre -->
+                <Label Text="Bon retour !"
+                       FontFamily="Roboto"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource WintakamTeal}"
+                       Margin="0,0,0,10"/>
+
+                <!-- Description -->
+                <Label Text="Heureux de vous revoir sur la plateforme qui met en avant vos propriétés immobilières"
+                       FontFamily="Roboto"
+                       FontSize="16"
+                       TextColor="{StaticResource WintakamGray}"
+                       LineHeight="1.4"
+                       Margin="0,0,0,20"/>
+
+            </VerticalStackLayout>
+
+            <!-- Formulaire de connexion -->
+            <VerticalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="Start">
+
+                <!-- Champ Email -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Email"
+                           FontFamily="Roboto"
+                           FontSize="14"
+                           TextColor="{StaticResource WintakamGray}"/>
+
+                    <Border StrokeThickness="0"
+                            BackgroundColor="White">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="0"/>
+                        </Border.StrokeShape>
+
+                        <Grid>
+                            <BoxView Color="{StaticResource WintakamTeal}"
+                                     HeightRequest="1"
+                                     VerticalOptions="End"/>
+
+                            <Entry x:Name="EmailEntry"
+                                   Placeholder="adresse.email@gmail.com"
+                                   FontFamily="Roboto"
+                                   FontSize="16"
+                                   TextColor="{StaticResource WintakamGray}"
+                                   PlaceholderColor="{StaticResource Gray300}"
+                                   BackgroundColor="Transparent"
+                                   Keyboard="Email"
+                                   Margin="0,0,0,5"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Champ Mot de passe -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Mot de passe"
+                           FontFamily="Roboto"
+                           FontSize="14"
+                           TextColor="{StaticResource WintakamGray}"/>
+
+                    <Border StrokeThickness="0"
+                            BackgroundColor="Transparent">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="0"/>
+                        </Border.StrokeShape>
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <BoxView Grid.ColumnSpan="2"
+                                     Color="{StaticResource WintakamTeal}"
+                                     HeightRequest="1"
+                                     VerticalOptions="End"/>
+
+                            <Entry x:Name="PasswordEntry"
+                                   Grid.Column="0"
+                                   Placeholder="••••••••••"
+                                   FontFamily="Roboto"
+                                   FontSize="16"
+                                   TextColor="{StaticResource WintakamGray}"
+                                   PlaceholderColor="{StaticResource Gray300}"
+                                   BackgroundColor="Transparent"
+                                   IsPassword="True"
+                                   Margin="0,0,0,5"/>
+
+                            <ImageButton Grid.Column="1"
+                                        x:Name="TogglePasswordButton"
+                                        Source="eye_off.png"
+                                        WidthRequest="24"
+                                        HeightRequest="24"
+                                        BackgroundColor="Transparent"
+                                        VerticalOptions="Center"
+                                        Margin="0,0,0,5"
+                                        Clicked="OnTogglePasswordClicked"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Case à cocher "Se souvenir" -->
+                <HorizontalStackLayout Spacing="8" Margin="0,5,0,0">
+                    <CheckBox x:Name="RememberMeCheckBox"
+                              Color="{StaticResource WintakamTeal}"/>
+                    <Label Text="Se souvenir"
+                           FontFamily="Roboto"
+                           FontSize="14"
+                           TextColor="{StaticResource Gray500}"
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <!-- Bouton Se connecter -->
+                <Button Text="Se connecter"
+                        FontFamily="Roboto"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        BackgroundColor="{StaticResource WintakamGray}"
+                        HeightRequest="56"
+                        CornerRadius="12"
+                        Margin="0,10,0,0"
+                        Clicked="OnSeConnecterClicked"/>
+
+                <!-- Séparateur OU -->
+                <Grid ColumnDefinitions="*,Auto,*" Margin="0,20,0,20">
+                    <BoxView Grid.Column="0"
+                             Color="{StaticResource Gray300}"
+                             HeightRequest="1"
+                             VerticalOptions="Center"/>
+
+                    <Label Grid.Column="1"
+                           Text="OU"
+                           FontFamily="Roboto"
+                           FontSize="14"
+                           TextColor="{StaticResource Gray400}"
+                           Margin="15,0"/>
+
+                    <BoxView Grid.Column="2"
+                             Color="{StaticResource Gray300}"
+                             HeightRequest="1"
+                             VerticalOptions="Center"/>
+                </Grid>
+
+                <!-- Boutons de connexion sociale -->
+                <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+
+                    <!-- Bouton Google -->
+                    <Border StrokeThickness="1"
+                            Stroke="{StaticResource Gray200}"
+                            BackgroundColor="White"
+                            WidthRequest="60"
+                            HeightRequest="60">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="30"/>
+                        </Border.StrokeShape>
+
+                        <ImageButton Source="google_icon.png"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnGoogleLoginClicked"/>
+                    </Border>
+
+                    <!-- Bouton Facebook -->
+                    <Border StrokeThickness="1"
+                            Stroke="{StaticResource Gray200}"
+                            BackgroundColor="White"
+                            WidthRequest="60"
+                            HeightRequest="60">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="30"/>
+                        </Border.StrokeShape>
+
+                        <ImageButton Source="facebook_icon.png"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnFacebookLoginClicked"/>
+                    </Border>
+
+                </HorizontalStackLayout>
+
+                <!-- Lien d'inscription -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5" Margin="0,20,0,0">
+                    <Label Text="Vous n'avez pas de compte?"
+                           FontFamily="Roboto"
+                           FontSize="14"
+                           TextColor="{StaticResource Gray500}"/>
+
+                    <Label Text="S'enregistrer"
+                           FontFamily="Roboto"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource WintakamTeal}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSenregistrerTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+            <!-- Bouton Retour en bas -->
+            <Label Grid.Row="2"
+                   Text="Retour"
+                   FontFamily="Roboto"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource WintakamGray}"
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   Margin="0,20,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRetourTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

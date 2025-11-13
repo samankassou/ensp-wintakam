@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Wintakam.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Wintakam"
+    Shell.FlyoutBehavior="Flyout"
+    Title="Wintakam"
+    Shell.BackgroundColor="{StaticResource WintakamTeal}"
+    Shell.ForegroundColor="White"
+    Shell.TitleColor="White">
+
+    <ShellContent
+        Title="Welcome"
+        ContentTemplate="{DataTemplate local:WelcomePage}"
+        Route="WelcomePage" />
+
+    <ShellContent
+        Title="Maisons"
+        ContentTemplate="{DataTemplate local:MaisonsPage}"
+        Route="MaisonsPage" />
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>

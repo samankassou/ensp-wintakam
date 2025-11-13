@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wintakam.WelcomePage"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto,*"
+          Padding="40,0">
+
+        <!-- Section supérieure vide pour centrer le contenu -->
+        <BoxView Grid.Row="0" Color="White"/>
+
+        <!-- Contenu principal centré -->
+        <VerticalStackLayout Grid.Row="1"
+                            Spacing="40"
+                            VerticalOptions="Center">
+
+            <!-- Texte de bienvenue -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Bienvenue sur"
+                       FontFamily="Roboto"
+                       FontSize="24"
+                       TextColor="{StaticResource WintakamGray}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+
+                <Label Text="Wintakam"
+                       FontFamily="Roboto"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource WintakamTeal}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+
+            <!-- Bouton Continuer -->
+            <Button Text="Continuer"
+                    FontFamily="Roboto"
+                    FontSize="16"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource WintakamGray}"
+                    HeightRequest="56"
+                    CornerRadius="12"
+                    Clicked="OnContinuerClicked"/>
+
+        </VerticalStackLayout>
+
+        <!-- Section inférieure vide pour centrer le contenu -->
+        <BoxView Grid.Row="2" Color="White"/>
+
+    </Grid>
+
+</ContentPage>

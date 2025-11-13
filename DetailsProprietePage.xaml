@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wintakam.DetailsProprietePage"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto">
+        <!-- Bouton d'appel flottant au-dessus du ScrollView -->
+        <Border Grid.Row="0"
+               BackgroundColor="{StaticResource WintakamTeal}"
+               StrokeThickness="0"
+               WidthRequest="60"
+               HeightRequest="60"
+               HorizontalOptions="End"
+               VerticalOptions="End"
+               Margin="20,0,20,30"
+               ZIndex="100">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30"/>
+            </Border.StrokeShape>
+
+            <ImageButton Source="phone_icon.png"
+                        WidthRequest="30"
+                        HeightRequest="30"
+                        BackgroundColor="Transparent"
+                        Clicked="OnAppelerClicked"/>
+        </Border>
+
+    <ScrollView Grid.Row="0">
+        <Grid RowDefinitions="300,Auto,*">
+
+            <!-- Image principale avec overlay -->
+            <Grid Grid.Row="0">
+                <Image x:Name="ImagePrincipale"
+                       Source="{Binding Image}"
+                       Aspect="AspectFill"/>
+
+                <!-- Overlay gradient -->
+                <BoxView Color="Black"
+                         Opacity="0.3"
+                         VerticalOptions="Fill"/>
+
+                <!-- Bouton retour en haut à gauche -->
+                <Border BackgroundColor="#80000000"
+                       StrokeThickness="0"
+                       WidthRequest="48"
+                       HeightRequest="48"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start"
+                       Margin="20,40,0,0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24"/>
+                    </Border.StrokeShape>
+
+                    <ImageButton Source="arrow_back.png"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                BackgroundColor="Transparent"
+                                Clicked="OnRetourClicked"/>
+                </Border>
+
+                <!-- Bouton recherche en haut à droite -->
+                <Border BackgroundColor="#80000000"
+                       StrokeThickness="0"
+                       WidthRequest="48"
+                       HeightRequest="48"
+                       HorizontalOptions="End"
+                       VerticalOptions="Start"
+                       Margin="0,40,20,0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="24"/>
+                    </Border.StrokeShape>
+
+                    <ImageButton Source="search_icon.png"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                BackgroundColor="Transparent"
+                                Clicked="OnSearchClicked"/>
+                </Border>
+
+                <!-- Informations sur l'image -->
+                <VerticalStackLayout VerticalOptions="End"
+                                    HorizontalOptions="Start"
+                                    Margin="20,0,0,20"
+                                    Spacing="10">
+
+                    <!-- Titre -->
+                    <Label x:Name="TitrePropriete"
+                           Text="Constructions haut de gamme"
+                           FontFamily="Roboto"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+
+                    <!-- Localisation -->
+                    <Label x:Name="LocalisationPropriete"
+                           Text="Ngoyé"
+                           FontFamily="Roboto"
+                           FontSize="16"
+                           TextColor="White"
+                           Opacity="0.9"/>
+
+                    <!-- Badges -->
+                    <HorizontalStackLayout Spacing="15">
+                        <HorizontalStackLayout Spacing="5">
+                            <Image Source="home_icon_white.png"
+                                  WidthRequest="16"
+                                  HeightRequest="16"
+                                  VerticalOptions="Center"/>
+                            <Label Text="Maison"
+                                  FontFamily="Roboto"
+                                  FontSize="13"
+                                  TextColor="White"
+                                  VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="5">
+                            <Image Source="views_icon.png"
+                                  WidthRequest="16"
+                                  HeightRequest="16"
+                                  VerticalOptions="Center"/>
+                            <Label Text="345 vues"
+                                  FontFamily="Roboto"
+                                  FontSize="13"
+                                  TextColor="White"
+                                  VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="5">
+                            <Image Source="save_icon.png"
+                                  WidthRequest="16"
+                                  HeightRequest="16"
+                                  VerticalOptions="Center"/>
+                            <Label Text="Enregistré"
+                                  FontFamily="Roboto"
+                                  FontSize="13"
+                                  TextColor="White"
+                                  VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+                <!-- Logo propriétaire en bas à droite -->
+                <Image Source="goldencity_logo.png"
+                      WidthRequest="80"
+                      HeightRequest="80"
+                      HorizontalOptions="End"
+                      VerticalOptions="End"
+                      Margin="0,0,20,20"/>
+
+            </Grid>
+
+            <!-- Prix et informations principales -->
+            <VerticalStackLayout Grid.Row="1"
+                                Padding="20"
+                                Spacing="15">
+
+                <!-- Prix -->
+                <Label Text="80 000 000 FCFA"
+                      FontFamily="Roboto"
+                      FontSize="28"
+                      FontAttributes="Bold"
+                      TextColor="{StaticResource WintakamTeal}"/>
+
+                <!-- Localisation détaillée -->
+                <Label Text="Sud, Kribi"
+                      FontFamily="Roboto"
+                      FontSize="16"
+                      TextColor="{StaticResource Gray500}"/>
+
+                <!-- Caractéristiques rapides -->
+                <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                      ColumnSpacing="20"
+                      Margin="0,10,0,0">
+
+                    <HorizontalStackLayout Grid.Column="0" Spacing="5">
+                        <Image Source="bed_icon.png"
+                              WidthRequest="20"
+                              HeightRequest="20"
+                              VerticalOptions="Center"/>
+                        <Label Text="2 Salons"
+                              FontFamily="Roboto"
+                              FontSize="14"
+                              TextColor="{StaticResource Gray600}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Column="1" Spacing="5">
+                        <Image Source="bed_icon.png"
+                              WidthRequest="20"
+                              HeightRequest="20"
+                              VerticalOptions="Center"/>
+                        <Label Text="2 Chambres"
+                              FontFamily="Roboto"
+                              FontSize="14"
+                              TextColor="{StaticResource Gray600}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Column="2" Spacing="5">
+                        <Image Source="area_icon.png"
+                              WidthRequest="20"
+                              HeightRequest="20"
+                              VerticalOptions="Center"/>
+                        <Label Text="1 000 m2"
+                              FontFamily="Roboto"
+                              FontSize="14"
+                              TextColor="{StaticResource Gray600}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                </Grid>
+
+            </VerticalStackLayout>
+
+            <!-- Contenu avec onglets -->
+            <VerticalStackLayout Grid.Row="2"
+                                Spacing="20"
+                                Padding="20,0">
+
+                <!-- Onglets -->
+                <Grid ColumnDefinitions="*,*,*"
+                      ColumnSpacing="0">
+
+                    <VerticalStackLayout Grid.Column="0"
+                                        Spacing="10">
+                        <Label Text="Détails"
+                              FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamTeal}"
+                              HorizontalOptions="Center"/>
+                        <BoxView Color="{StaticResource WintakamTeal}"
+                                HeightRequest="3"
+                                HorizontalOptions="Fill"/>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Column="1"
+                          Text="Proche"
+                          FontFamily="Roboto"
+                          FontSize="16"
+                          TextColor="{StaticResource Gray500}"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"/>
+
+                    <Label Grid.Column="2"
+                          Text="Accessbilité"
+                          FontFamily="Roboto"
+                          FontSize="16"
+                          TextColor="{StaticResource Gray500}"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"/>
+
+                </Grid>
+
+                <!-- Description -->
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Caractéristiques courantes des maisons de luxe. Les maisons de luxe sont des constructions haut de gamme. Pour être considérées comme haut de gamme, ces maisons présentent."
+                          FontFamily="Roboto"
+                          FontSize="14"
+                          TextColor="{StaticResource Gray600}"
+                          LineHeight="1.5"/>
+
+                    <Label Text="Voir plus"
+                          FontFamily="Roboto"
+                          FontSize="14"
+                          FontAttributes="Bold"
+                          TextColor="{StaticResource WintakamTeal}"
+                          HorizontalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnVoirPlusClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+
+                <!-- Caractéristiques détaillées -->
+                <VerticalStackLayout Spacing="15">
+
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="sofa_icon.png"
+                              WidthRequest="24"
+                              HeightRequest="24"
+                              VerticalOptions="Center"/>
+                        <Label Text="2 Salons"
+                              FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamTeal}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="bed_icon.png"
+                              WidthRequest="24"
+                              HeightRequest="24"
+                              VerticalOptions="Center"/>
+                        <Label Text="2 Chambres"
+                              FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamTeal}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="kitchen_icon.png"
+                              WidthRequest="24"
+                              HeightRequest="24"
+                              VerticalOptions="Center"/>
+                        <Label Text="1 Cuisine"
+                              FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamTeal}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="shower_icon.png"
+                              WidthRequest="24"
+                              HeightRequest="24"
+                              VerticalOptions="Center"/>
+                        <Label Text="2 Douches"
+                              FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamTeal}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="area_icon.png"
+                              WidthRequest="24"
+                              HeightRequest="24"
+                              VerticalOptions="Center"/>
+                        <Label Text="1 000 m2"
+                              FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamTeal}"
+                              VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+                <!-- Photos -->
+                <VerticalStackLayout Spacing="15" Margin="0,20,0,0">
+                    <Label Text="Photos"
+                          FontFamily="Roboto"
+                          FontSize="20"
+                          FontAttributes="Bold"
+                          TextColor="Black"/>
+
+                    <ScrollView Orientation="Horizontal"
+                               HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout Spacing="15">
+                            <Border StrokeThickness="0"
+                                   WidthRequest="150"
+                                   HeightRequest="120">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Image Source="photo1.jpg"
+                                      Aspect="AspectFill"/>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                   WidthRequest="150"
+                                   HeightRequest="120">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Image Source="photo2.jpg"
+                                      Aspect="AspectFill"/>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                   WidthRequest="150"
+                                   HeightRequest="120">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Image Source="photo3.jpg"
+                                      Aspect="AspectFill"/>
+                            </Border>
+
+                            <Border StrokeThickness="0"
+                                   WidthRequest="150"
+                                   HeightRequest="120">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Image Source="photo4.jpg"
+                                      Aspect="AspectFill"/>
+                            </Border>
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                </VerticalStackLayout>
+
+                <!-- Contact du propriétaire -->
+                <VerticalStackLayout Spacing="15" Margin="0,20,0,30">
+                    <Label Text="Contact du propriétaire"
+                          FontFamily="Roboto"
+                          FontSize="20"
+                          FontAttributes="Bold"
+                          TextColor="Black"/>
+
+                    <Grid ColumnDefinitions="80,*,Auto"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnSpacing="15"
+                          RowSpacing="10">
+
+                        <!-- Logo -->
+                        <Image Grid.Row="0"
+                              Grid.Column="0"
+                              Grid.RowSpan="3"
+                              Source="goldencity_logo.png"
+                              WidthRequest="70"
+                              HeightRequest="70"
+                              VerticalOptions="Start"/>
+
+                        <!-- Nom -->
+                        <Label Grid.Row="0"
+                              Grid.Column="1"
+                              Text="Golden City"
+                              FontFamily="Roboto"
+                              FontSize="18"
+                              FontAttributes="Bold"
+                              TextColor="{StaticResource WintakamTeal}"/>
+
+                        <!-- Type -->
+                        <Label Grid.Row="1"
+                              Grid.Column="1"
+                              Text="Propriété immobilière"
+                              FontFamily="Roboto"
+                              FontSize="14"
+                              TextColor="{StaticResource Gray500}"/>
+
+                        <!-- Étoiles -->
+                        <HorizontalStackLayout Grid.Row="2"
+                                              Grid.Column="1"
+                                              Spacing="5">
+                            <Label Text="⭐⭐⭐⭐⭐"
+                                  FontSize="16"/>
+                        </HorizontalStackLayout>
+
+                    </Grid>
+
+                    <!-- Informations de contact -->
+                    <VerticalStackLayout Spacing="10" Margin="0,10,0,0">
+                        <Label FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamGray}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Appelez-nous : " FontAttributes="Bold"/>
+                                    <Span Text="( +237 00000000 )"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label FontFamily="Roboto"
+                              FontSize="16"
+                              TextColor="{StaticResource WintakamGray}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Email : " FontAttributes="Bold"/>
+                                    <Span Text="goldencity@gmail.com"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+
+    </Grid>
+
+</ContentPage>
